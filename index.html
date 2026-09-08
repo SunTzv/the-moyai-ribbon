@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎀</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🗿</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <header class="app-header">
+            <div class="puzzle-selector">
+                <button class="type-btn active" data-type="mini">Mini</button>
+                <button class="type-btn" data-type="midi">Midi</button>
+                <button class="type-btn" data-type="daily">Daily</button>
+            </div>
+        </header>
+
+        <div class="active-clue-card" id="active-clue-card">
+            <button class="clue-nav-btn" id="btn-prev-clue" title="Previous Clue">‹</button>
+            <div class="clue-main-content">
+                <div class="clue-meta">
+                    <span class="clue-num" id="active-clue-num">1</span>
+                    <span class="clue-dir" id="active-clue-direction">ACROSS</span>
+                </div>
+                <p class="clue-text" id="active-clue-text">Select a cell to begin...</p>
+            </div>
+            <button class="clue-nav-btn" id="btn-next-clue" title="Next Clue">›</button>
+        </div>
+
+        <main class="game-layout">
+            <section class="board-section">
+                <div id="board-wrapper">
+                    <div id="board"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="victory-modal" class="modal hidden">
+        <div class="modal-content glass-card">
+            <div class="victory-icon">🎉</div>
+            <h2>Puzzle Solved!</h2>
+            <p id="victory-stats">You finished!</p>
+            <button id="btn-close-victory" class="primary-btn">Awesome!</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
