@@ -2,7 +2,7 @@ name: 🗿🎀
 
 on:
   schedule:
-    - cron: '30 3 * * *'
+    - cron: '37 3 * * *'
   workflow_dispatch:
 
 permissions:
