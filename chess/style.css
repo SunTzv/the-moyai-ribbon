@@ -222,13 +222,23 @@ body {
 
 /* Chessboard Custom Colors */
 .white-1e1d7 {
-    background-color: #dddddd !important;
+    background: #ffffff !important;
     color: #000000 !important;
 }
 
 .black-3c85d {
-    background-color: #222222 !important;
+    background: #000000 !important;
     color: #ffffff !important;
+}
+
+/* Orange Black Pieces (Base image is white) */
+.piece-417db[data-piece^="b"] {
+    filter: url(#neon-orange) !important;
+}
+
+/* White Pieces */
+.piece-417db[data-piece^="w"] {
+    filter: none !important;
 }
 
 /* Highlight for moves */

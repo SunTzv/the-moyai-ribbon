@@ -18,6 +18,27 @@
 </head>
 
 <body>
+    <svg style="width:0; height:0; position:absolute;" aria-hidden="true">
+        <filter id="neon-orange">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="4" result="noise" />
+            <feColorMatrix type="matrix" values="
+                1 0 0 0 0  
+                1 0 0 0 0  
+                1 0 0 0 0  
+                0 0 0 1 0" in="noise" result="grayNoise" />
+            <feDiffuseLighting in="grayNoise" lighting-color="#ffffff" surfaceScale="3" result="light">
+                <feDistantLight azimuth="45" elevation="35" />
+            </feDiffuseLighting>
+            <feColorMatrix type="matrix" in="light" result="coloredMoon" values="
+                1.05 0 0 0 0
+                0.45 0 0 0 0
+                0.58 0 0 0 0
+                0    0 0 1 0" />
+            <feBlend mode="multiply" in="coloredMoon" in2="SourceGraphic" result="texturedPiece" />
+            <feComposite operator="in" in="texturedPiece" in2="SourceGraphic" />
+        </filter>
+    </svg>
+
     <div class="app-container">
         <header class="app-header">
             <a href="../index.html" class="back-link">← Games</a>
@@ -53,7 +74,6 @@
         </main>
     </div>
 
-    <!-- Chess.js and Chessboard.js Scripts -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
     <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>

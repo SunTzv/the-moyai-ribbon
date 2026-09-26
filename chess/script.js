@@ -42,7 +42,10 @@ $(document).ready(function() {
             onDragStart: onDragStart,
             onDrop: onDrop,
             onSnapEnd: onSnapEnd,
-            pieceTheme: 'https://chessboardjs.com/img/chesspieces/wikipedia/{piece}.png'
+            pieceTheme: function(piece) {
+                let pieceType = piece.charAt(1);
+                return `https://chessboardjs.com/img/chesspieces/wikipedia/w${pieceType}.png`;
+            }
         };
         board = Chessboard('board', config);
     }
