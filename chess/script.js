@@ -19,7 +19,7 @@ $(document).ready(function() {
     };
 
     // Load Puzzles
-    fetch('./todays/chess.json')
+    fetch(`./todays/chess.json?v=${Date.now()}`)
         .then(res => res.json())
         .then(data => {
             // Flatten and sort by rating

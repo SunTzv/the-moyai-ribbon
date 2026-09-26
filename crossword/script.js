@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function loadPuzzle(type) {
-        fetch(`./todays/${type}.json`)
+        fetch(`./todays/${type}.json?v=${Date.now()}`)
             .then(res => {
                 if (!res.ok) throw new Error(`HTTP ${res.status}`);
                 return res.json();
