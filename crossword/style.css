@@ -1,0 +1,346 @@
+:root {
+    --bg-main: #050505;
+    --bg-card: #050505;
+    --border-color: #ffffff;
+    --border-grid: #ffffff;
+
+    --primary: #ffffff;
+    --primary-light: #ffffff;
+    --primary-soft: #000000;
+    --primary-glow: transparent;
+
+    --text-main: #ffffff;
+    --text-muted: #888888;
+
+    --cell-bg: #ffffff;
+    --cell-text: #000000;
+    --cell-black: #050505;
+    --cell-highlight: #666666; /* Distinct 3rd color for highlight */
+    --cell-active: #ff003c;
+    --cell-active-border: #ffffff;
+    --cell-error: #ff003c;
+
+    --cols: 5;
+    --rows: 5;
+    --border: 3px solid #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    font-family: monospace;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 24px 16px;
+    text-transform: uppercase;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    background: var(--bg-card);
+    border: var(--border);
+    box-shadow: 6px 6px 0px #fff;
+}
+
+.puzzle-selector {
+    display: flex;
+    background: var(--bg-main);
+    padding: 4px;
+    gap: 8px;
+}
+
+.type-btn {
+    background: var(--bg-main);
+    border: 2px solid var(--primary);
+    color: var(--text-main);
+    padding: 8px 16px;
+    font-size: 1rem;
+    font-weight: 800;
+    font-family: monospace;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.type-btn:hover {
+    background: var(--primary);
+    color: var(--bg-main);
+}
+
+.type-btn.active {
+    background: var(--primary);
+    color: var(--bg-main);
+    box-shadow: inset 0 0 0 2px var(--bg-main);
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--bg-main);
+    background: var(--text-main);
+    font-weight: 800;
+    font-size: 1rem;
+    padding: 8px 16px;
+    border: 2px solid var(--primary);
+    transition: all 0.1s;
+}
+
+.back-link:hover {
+    background: var(--bg-main);
+    color: var(--text-main);
+}
+
+.active-clue-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 16px;
+    background: var(--bg-card);
+    border: var(--border);
+    box-shadow: 8px 8px 0px #fff;
+}
+
+.clue-nav-btn {
+    background: var(--bg-main);
+    border: 2px solid var(--primary);
+    color: var(--primary);
+    font-size: 1.5rem;
+    font-weight: 800;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease;
+    flex-shrink: 0;
+}
+
+.clue-nav-btn:hover {
+    background: var(--primary);
+    color: var(--bg-main);
+}
+
+.clue-main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 8px;
+    flex: 1;
+}
+
+.clue-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.clue-num {
+    font-weight: 800;
+    font-size: 1.2rem;
+    color: var(--primary);
+}
+
+.clue-dir {
+    background: var(--text-main);
+    color: var(--bg-main);
+    font-size: 1rem;
+    font-weight: 800;
+    padding: 4px 12px;
+}
+
+.clue-text {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+.game-layout {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.board-section {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+#board-wrapper {
+    width: 100%;
+    max-width: 520px;
+    background: var(--bg-card);
+    padding: 16px;
+    border: var(--border);
+    box-shadow: 8px 8px 0px #fff;
+}
+
+#board {
+    display: grid;
+    grid-template-columns: repeat(var(--cols, 5), 1fr);
+    grid-template-rows: repeat(var(--rows, 5), 1fr);
+    gap: 3px;
+    background-color: var(--border-grid);
+    border: 3px solid var(--border-grid);
+    width: 100%;
+    aspect-ratio: var(--cols, 5) / var(--rows, 5);
+}
+
+.cell {
+    position: relative;
+    background-color: var(--cell-bg);
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell.black {
+    background-color: var(--cell-black);
+    cursor: default;
+}
+
+.cell.highlighted {
+    background-color: var(--cell-highlight);
+}
+
+.cell.highlighted .cell-value,
+.cell.highlighted .cell-label {
+    color: var(--text-main);
+}
+
+.cell.active {
+    background-color: var(--cell-active) !important;
+    box-shadow: inset 0 0 0 3px var(--cell-active-border);
+    z-index: 3;
+}
+
+.cell.active .cell-value {
+    color: var(--text-main);
+}
+.cell.active .cell-label {
+    color: var(--text-main);
+}
+
+.cell-label {
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    font-size: clamp(9px, 1.3vw, 12px);
+    font-weight: 800;
+    color: #000;
+    line-height: 1;
+    pointer-events: none;
+}
+
+.cell-value {
+    font-size: clamp(16px, 2.5vw, 28px);
+    font-weight: 800;
+    color: var(--cell-text);
+    text-transform: uppercase;
+    pointer-events: none;
+    line-height: 1;
+}
+
+.cell.incorrect {
+    background-color: var(--cell-error);
+}
+.cell.incorrect .cell-value {
+    color: var(--text-main);
+}
+.cell.incorrect .cell-label {
+    color: var(--text-main);
+}
+
+.cell.revealed .cell-value {
+    color: #555;
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 5, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-content {
+    background: var(--bg-main);
+    border: var(--border);
+    padding: 48px;
+    text-align: center;
+    box-shadow: 12px 12px 0px #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.modal-content h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--text-muted);
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: var(--bg-main);
+    border: 2px solid var(--primary);
+    padding: 16px 24px;
+    font-size: 1.2rem;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: monospace;
+    text-transform: uppercase;
+    transition: all 0.1s;
+}
+
+.primary-btn:hover {
+    background: var(--bg-main);
+    color: var(--primary);
+    box-shadow: inset 0 0 0 2px var(--primary);
+}
+
+@media (max-width: 600px) {
+    .app-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+}

@@ -18,13 +18,21 @@ jobs:
         with:
           python-version: '3.11'
 
+      - name: Install Dependencies
+        run: pip install zstandard
+
       - name: Run Fetch Script
-        run: python fetch_puzzles.py
+        run: |
+          cd crossword
+          python fetch_puzzles.py
+          cd ../chess
+          python fetch_puzzles.py
 
       - name: Commit and Push
         run: |
           git config user.name "SunTzv"
           git config user.email "suntzu@ncrypt.net.in"
-          git add todays/
+          git add crossword/todays/
+          git add chess/todays/
           git commit -m "🗿🎀" || exit 0
           git push
